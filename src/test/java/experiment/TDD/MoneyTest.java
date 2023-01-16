@@ -41,7 +41,7 @@ public class MoneyTest extends TddApplicationTests {
     }
 
     @Test
-    @DisplayName("")
+    @DisplayName("Проверка слагаемых")
     void testPlusReturnSum() {
         Money five = Money.dollar(5);
         Expression result = five.plus(five);
@@ -51,7 +51,7 @@ public class MoneyTest extends TddApplicationTests {
     }
 
     @Test
-    @DisplayName("")
+    @DisplayName("Приведение объекта Sum к определенной валюте")
     void testReduceSum() {
         Expression sum = new Sum(Money.dollar(3), Money.dollar(4));
         Bank bank = new Bank();
@@ -60,10 +60,25 @@ public class MoneyTest extends TddApplicationTests {
     }
 
     @Test
-    @DisplayName("")
+    @DisplayName("Приведение объекта Money к определенной валюте")
     void testReduceMoney() {
         Bank bank = new Bank();
         Money result = bank.reduce(Money.dollar(1), "USD");
         assertEquals(Money.dollar(1), result);
+    }
+
+    @Test
+    @DisplayName("Приведение франка к доллару")
+    void testReduceMoneyDifferentCurrency() {
+        Bank bank = new Bank();
+        bank.addRate("CHF", "USD", 2);
+        Money result = bank.reduce(Money.franc(2), "USD");
+        assertEquals(Money.dollar(1), result);
+    }
+
+    @Test
+    @DisplayName("Проверка обменного курса")
+    void testIdentityRate() {
+        assertEquals(1, new Bank().rate("USD", "USD"));
     }
 }
