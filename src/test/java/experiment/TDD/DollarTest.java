@@ -5,7 +5,7 @@ import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-public class TempNameTest extends TddApplicationTests {
+public class DollarTest extends TddApplicationTests {
 
     @Test
     @DisplayName("Умножение")
@@ -15,5 +15,12 @@ public class TempNameTest extends TddApplicationTests {
         assertEquals(10, product.amount);
         product = five.times(3);
         assertEquals(15, product.amount);
+    }
+
+    @Test
+    @DisplayName("Сравнение")
+    void testEquality() {
+        assertTrue(new Dollar(5).equals(new Dollar(5)));
+        assertFalse(new Dollar(5).equals(new Dollar(6)));
     }
 }
