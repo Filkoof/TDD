@@ -5,7 +5,7 @@ import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-public class DollarTest extends TddApplicationTests {
+public class MoneyTest extends TddApplicationTests {
 
     @Test
     @DisplayName("Умножение")
@@ -16,7 +16,7 @@ public class DollarTest extends TddApplicationTests {
     }
 
     @Test
-    @DisplayName("Сравнение")
+    @DisplayName("Сравнение значений")
     void testEquality() {
         assertTrue(Money.dollar(5).equals(Money.dollar(5)));
         assertFalse(Money.dollar(5).equals(Money.dollar(6)));
@@ -28,11 +28,5 @@ public class DollarTest extends TddApplicationTests {
     void testCurrency() {
         assertEquals("USD", Money.dollar(1).currency());
         assertEquals("CHF", Money.franc(1).currency());
-    }
-
-    @Test
-    @DisplayName("Cравнение равности классов")
-    public void testDifferentClassEquality() {
-        assertTrue(new Money(10, "CHF").equals(new Franc(10, "CHF")));
     }
 }
